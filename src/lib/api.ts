@@ -96,9 +96,9 @@ export const tasksApi = {
 
   get: (id: number) => api.get<Task>(`/tasks/${id}`),
 
-  create: (payload: { title: string; description?: string }) =>
-    api.post<Task>('/tasks', payload),
 
+create: (payload: { title: string; description?: string; status?: boolean }) =>
+  api.post<Task>('/tasks', payload),
   update: (
     id: number,
     payload: { title?: string; description?: string; status?: boolean }
