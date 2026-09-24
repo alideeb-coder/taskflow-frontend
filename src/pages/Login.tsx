@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 import { authApi, parseLaravelError } from '../lib/api';
 import { useAuth } from '../contexts/AuthContext';
 import { useEffect } from 'react';
-
 export default function Login() {
   const { t } = useTranslation();
   const { login } = useAuth();
@@ -59,9 +58,9 @@ export default function Login() {
     }
   };
 
-  const handleGoogle = () => {
-    window.location.href = 'http://127.0.0.1:8000/api/auth/google';
-  };
+ const handleGoogle = () => {
+  window.location.href = apiUrl('/auth/google');
+};
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12">

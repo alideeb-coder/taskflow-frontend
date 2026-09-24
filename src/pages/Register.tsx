@@ -68,9 +68,9 @@ export default function Register() {
     }
   };
 
-  const handleGoogle = () => {
-    window.location.href = 'http://127.0.0.1:8000/api/auth/google';
-  };
+ const handleGoogle = () => {
+  window.location.href = apiUrl('/auth/google');
+};
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12">

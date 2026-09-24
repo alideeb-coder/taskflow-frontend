@@ -113,3 +113,8 @@ export function parseLaravelError(err: unknown): LaravelError {
   if (axiosErr.response?.data) return axiosErr.response.data;
   return { message: 'Something went wrong' };
 }
+// Helper للـ OAuth URLs
+export const apiUrl = (path: string) => {
+  const base = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+  return `${base}${path}`;
+};
