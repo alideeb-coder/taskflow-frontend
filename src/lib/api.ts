@@ -114,7 +114,10 @@ export function parseLaravelError(err: unknown): LaravelError {
   return { message: 'Something went wrong' };
 }
 // Helper للـ OAuth URLs
+// Helper to build full API URLs (for OAuth redirects etc.)
 export const apiUrl = (path: string) => {
   const base = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
-  return `${base}${path}`;
+  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${cleanBase}${cleanPath}`;
 };
