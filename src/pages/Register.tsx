@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
-import { authApi, parseLaravelError } from '../lib/api';
+import { authApi, parseLaravelError, apiUrl } from '../lib/api';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Register() {
