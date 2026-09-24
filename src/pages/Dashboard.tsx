@@ -60,32 +60,7 @@ export default function Dashboard() {
     fetchTasks();
   }, [fetchTasks]);
 
-  const handleCreateOrUpdate = async (data: {
-    title: string;
-    description: string;
-    status: boolean;
-  }) => {
-    setSaving(true);
-    try {
-      if (editingTask) {
-        await tasksApi.update(editingTask.id, data);
-        toast.success(t('toast.taskUpdated'));
-      } else {
-        await tasksApi.create({
-          title: data.title,
-          description: data.description || undefined,
-        });
-        toast.success(t('toast.taskCreated'));
-      }
-      setModalOpen(false);
-      setEditingTask(null);
-      fetchTasks();
-    } catch {
-      toast.error(t('toast.error'));
-    } finally {
-      setSaving(false);
-    }
-  };
+  
 
   const handleToggleStatus = async (task: Task) => {
     try {
@@ -95,7 +70,33 @@ export default function Dashboard() {
     } catch {
       toast.error(t('toast.error'));
     }
-  };
+  };const handleCreateOrUpdate = async (data: {
+  title: string;
+  description: string;
+  status: boolean;
+}) => {
+  setSaving(true);
+  try {
+    if (editingTask) {
+      await tasksApi.update(editingTask.id, data);
+      toast.success(t('toast.taskUpdated'));
+    } else {
+      await tasksApi.create({
+        title: data.title,
+        description: data.description || undefined,
+        status: data.status,  // ← ✅ ضيف هذا السطر
+      });
+      toast.success(t('toast.taskCreated'));
+    }
+    setModalOpen(false);
+    setEditingTask(null);
+    fetchTasks();
+  } catch {
+    toast.error(t('toast.error'));
+  } finally {
+    setSaving(false);
+  }
+};
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
